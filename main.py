@@ -1,5 +1,5 @@
 from  tkinter import *
-from tkinter import ttk
+from playsound import playsound
 from random import randint
 
 class RollerDice:
@@ -9,12 +9,16 @@ class RollerDice:
 
         self.create_app()
     
+    def play(self):
+        playsound('roll_dice.mp3')
+
     def roll_dice(self, dice):
         rolled_dice = randint(1, dice)
         if self.is_int(self.modifier_var.get()):
             exibition = (f"Dado rolado: d{dice} \n"
             f"Você rolou {rolled_dice} + {self.modifier_var.get()}. \n"
             f"Total: {rolled_dice + int(self.modifier_var.get())}")
+            self.play()
         else:
             exibition = 'Insira apenas valores númericos'
             print(f'informação recebida: {self.modifier_var.get()}')
